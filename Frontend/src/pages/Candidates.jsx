@@ -41,19 +41,19 @@ const Candidates = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-col lg:flex-row">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <Navbar />
-        <main className="p-8">
-          <div className="flex justify-between items-center mb-6">
+        <main className="p-4 sm:p-6 lg:p-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
             <div>
-              <h2 className="font-display text-2xl font-semibold text-ink">Candidates</h2>
+              <h2 className="font-display text-xl sm:text-2xl font-semibold text-ink">Candidates</h2>
               <p className="text-sm text-slate-400 mt-1">{candidates.length} in your talent pool</p>
             </div>
             <button
               onClick={() => setShowForm(!showForm)}
-              className="flex items-center gap-1.5 bg-ink hover:bg-cobalt-600 text-white text-sm px-4 py-2.5 rounded-lg transition-colors"
+              className="flex items-center justify-center gap-1.5 bg-ink hover:bg-cobalt-600 text-white text-sm px-4 py-2.5 rounded-lg transition-colors w-full sm:w-auto"
             >
               {showForm ? <X size={15} /> : <Plus size={15} />}
               {showForm ? 'Cancel' : 'Add Candidate'}
@@ -61,7 +61,10 @@ const Candidates = () => {
           </div>
 
           {showForm && (
-            <form onSubmit={handleSubmit} className="bg-white border border-slate-200/70 rounded-2xl p-6 mb-8 grid grid-cols-2 gap-4 shadow-sm">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white border border-slate-200/70 rounded-2xl p-4 sm:p-6 mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4 shadow-sm"
+            >
               <input
                 placeholder="Name"
                 value={form.name}
@@ -94,20 +97,20 @@ const Candidates = () => {
                 placeholder="Skills (comma separated)"
                 value={form.skills}
                 onChange={(e) => setForm({ ...form, skills: e.target.value })}
-                className={`${inputClass} col-span-2`}
+                className={`${inputClass} sm:col-span-2`}
               />
-              <button className="col-span-2 bg-ink hover:bg-cobalt-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors">
+              <button className="sm:col-span-2 bg-ink hover:bg-cobalt-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors">
                 Add Candidate
               </button>
             </form>
           )}
 
           {candidates.length === 0 ? (
-            <p className="text-sm text-slate-400 bg-white border border-slate-200/70 rounded-2xl p-8 text-center">
+            <p className="text-sm text-slate-400 bg-white border border-slate-200/70 rounded-2xl p-6 sm:p-8 text-center">
               No candidates yet. Add someone to start building your pipeline.
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {candidates.map((candidate) => (
                 <CandidateCard key={candidate._id} candidate={candidate} onDelete={handleDelete} />
               ))}
