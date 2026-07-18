@@ -4,7 +4,7 @@ import { registerUser } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'recruiter' });
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <label className="text-xs font-medium text-slate-500">Password</label>
             <input
               type="password"
@@ -72,6 +72,17 @@ const Register = () => {
               className="w-full mt-1.5 border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:border-cobalt-500 outline-none transition-colors"
               required
             />
+          </div>
+          <div className="mb-6">
+            <label className="text-xs font-medium text-slate-500">Role</label>
+            <select
+              value={form.role}
+              onChange={(e) => setForm({ ...form, role: e.target.value })}
+              className="w-full mt-1.5 border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:border-cobalt-500 outline-none transition-colors"
+            >
+              <option value="recruiter">Recruiter</option>
+              <option value="admin">Admin</option>
+            </select>
           </div>
           <button className="w-full bg-ink hover:bg-cobalt-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors">
             Register
