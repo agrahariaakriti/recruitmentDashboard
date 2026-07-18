@@ -7,16 +7,30 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #F7F6F2;
   color: #15171E;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, .font-display {
   font-family: 'Sora', system-ui, sans-serif;
 }
 
+/* Prevent iOS input zoom-on-focus by ensuring inputs are at least 16px */
+input, select, textarea {
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  input, select, textarea {
+    font-size: 0.875rem; /* restore text-sm sizing on larger screens */
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #d8d6cf;
   border-radius: 999px;
