@@ -29,7 +29,10 @@ const Navbar = () => {
           <div className="w-8 h-8 rounded-full bg-cobalt-100 text-cobalt-700 flex items-center justify-center text-xs font-semibold">
             {initials}
           </div>
-          <span className="text-sm font-medium text-slate-700">{user?.name}</span>
+          <div className="flex flex-col leading-tight">
+            <span className="text-sm font-medium text-slate-700">{user?.name}</span>
+            <span className="text-[10px] uppercase tracking-wide text-slate-400">{user?.role}</span>
+          </div>
         </div>
         <button
           onClick={handleLogout}
